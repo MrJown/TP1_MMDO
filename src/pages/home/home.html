@@ -4,7 +4,7 @@
       Fake List
     </ion-title>
   </ion-navbar>
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
     </ion-list>
 </ion-header>
@@ -12,13 +12,9 @@
 
 <ion-list>
   <ion-item *ngFor="let item of results">
-    <ion-thumbnail item-start>
-      <img src="maison.png">
-    </ion-thumbnail>
-    <h2>{{item.title}}</h2>
-    <p>{{item.author}} • {{item.date}}</p>
-    <button ion-button clear item-end>View</button>
+    {{ item.title }}
   </ion-item>
+  <ion-item *ngIf="results.length < 1">Aucun résultat</ion-item>
 </ion-list>
 
 

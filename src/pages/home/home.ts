@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { NgIf } from '@angular/common';
+
 
 
 export interface Result {
@@ -11,8 +13,8 @@ export interface Result {
 }
 
 const fakeResults: Result[] = [
-  {title: 'Test', author: 'TestA', date:1997},
-  {title: 'Test2', author: 'Test2A', date:2018},
+  { title: 'Test', author: 'TestA', date: 1997 },
+  { title: 'Test2', author: 'Test2A', date: 2018 },
 ];
 
 @Component({
@@ -24,7 +26,11 @@ export class HomePage {
   results: Result[];
  // searchQuery: string = '';
   constructor(public navCtrl: NavController) {
-    this.results = fakeResults;
+    this.results = [];
+  }
+  getItems(ev: any) {
+    let val = ev.target.value;
+    this.results = val ? fakeResults : [];
   }
 
 }
