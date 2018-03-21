@@ -1,14 +1,31 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Fake List
     </ion-title>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+        {{ item.title }}
+      </ion-item>
+    </ion-list>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-list>
+  <ion-item *ngFor="let item of results">
+    <ion-thumbnail item-start>
+      <img src="maison.png">
+    </ion-thumbnail>
+    <h2>{{item.title}}</h2>
+    <p>{{item.author}} • {{item.date}}</p>
+    <button ion-button clear item-end>View</button>
+  </ion-item>
+</ion-list>
+
+
+  <!-- <li *ngFor="let item of results">{{ item.title }}    {{item.author }}     {{item.date}}</li> -->
+
+
 </ion-content>
