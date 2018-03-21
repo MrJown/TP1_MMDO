@@ -13,6 +13,7 @@
 <ion-list>
   <ion-item *ngFor="let item of results">
     {{ item.title }}
+    <button ion-button [navPush]="detailsPage" [navParams]="item">Details</button>
   </ion-item>
   <ion-item *ngIf="results.length < 1">Aucun résultat</ion-item>
 </ion-list>

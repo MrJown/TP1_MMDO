@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NgIf } from '@angular/common';
+import { DetailsPage } from '../details/details';
 
 
 
@@ -22,7 +23,7 @@ const fakeResults: Result[] = [
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  detailsPage = DetailsPage;
   results: Result[];
  // searchQuery: string = '';
   constructor(public navCtrl: NavController) {
@@ -33,4 +34,6 @@ export class HomePage {
     this.results = val ? fakeResults : [];
   }
 
+
 }
+
