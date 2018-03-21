@@ -3,13 +3,10 @@
     <ion-title>
       Fake List
     </ion-title>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-    <ion-list>
-      <ion-item *ngFor="let item of items">
-        {{ item.title }}
-      </ion-item>
-    </ion-list>
   </ion-navbar>
+    <ion-searchbar></ion-searchbar>
+    <ion-list>
+    </ion-list>
 </ion-header>
 <ion-content padding>
 
