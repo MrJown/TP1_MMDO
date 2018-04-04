@@ -18,8 +18,14 @@
 
 
 <ion-content padding>
+  <div align='center'>
+  <ion-thumbnail item-start>
+    <img [src]="'https://image.tmdb.org/t/p/w300' + result.backdrop_path">
+  </ion-thumbnail>
+</div>
+  <br/>
  <b>Synopsis</b>:  {{result.overview}}<br><br>
- <b>Votes</b> :  {{result.vote_average}}<br><br>
- <b>Titre original</b> :  {{result.original_title}}/10<br><br>
- <b>Date</b> :  {{result.release_date}}
+ <b>Votes</b> :  {{result.vote_average}}/10<br><br>
+ <b>Titre original</b> :  {{result.original_title}}<br><br>
+ <b>Date</b> :  {{result.release_date | date:'d MMMM, y'}}
 </ion-content>
