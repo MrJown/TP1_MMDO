@@ -1,22 +1,27 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { NgIf } from '@angular/common';
 import { DetailsPage } from '../details/details';
+import { HttpClient } from '@angular/common/http';
+import { KEY } from '../../app/tmdb';
+import { Observable } from 'rxjs/Observable';
+import { AsyncPipe } from '@angular/common';
+// import {}
 
 
 
 export interface Result {
   title: string;
+  original_title: string;
   author: string;
-  date: number;
-  //image: string;
-
+  release_date: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
 }
 
-const fakeResults: Result[] = [
-  { title: 'Test', author: 'TestA', date: 1997 },
-  { title: 'Test2', author: 'Test2A', date: 2018 },
-];
+// const fakeResults: Result[] = [
+//   { title: 'Test', author: 'TestA', date: 1997 },
+//   { title: 'Test2', author: 'Test2A', date: 2018 },
+// ];
 
 @Component({
   selector: 'page-home',
@@ -24,16 +29,23 @@ const fakeResults: Result[] = [
 })
 export class HomePage {
   detailsPage = DetailsPage;
-  results: Result[];
+  results: Observable<Result[]>;
  // searchQuery: string = '';
-  constructor(public navCtrl: NavController) {
-    this.results = [];
+  constructor(public http: HttpClient) {
+    this.results = Observable.of([]);
   }
   getItems(ev: any) {
-    let val = ev.target.value;
-    this.results = val ? fakeResults : [];
+    const val = ev.target.value;
+    this.results = val ? this.fetchItems(val) : Observable.of([]);
   }
 
+  fetchItems(val:string):Observable<Result[]>{
+    return this.http.get<Result[]>('https://api.themoviedb.org/3/search/movie', {
+      params: {
+        'api_key' : KEY, 'query': val
+      }
+    }).pluck('results');
+  }
 
 }
 
