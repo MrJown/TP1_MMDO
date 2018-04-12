@@ -42,9 +42,18 @@ export class HomePage {
   fetchItems(val:string):Observable<Result[]>{
     return this.http.get<Result[]>('https://api.themoviedb.org/3/search/movie', {
       params: {
-        'api_key' : KEY, 'query': val
+        'api_key' : KEY, 'query': val, 'language' : 'fr-FR'
       }
     }).pluck('results');
+  }
+
+  discoverMovies(): Observable<Result[]> {
+    return this.http.get<Result[]>('https://api.themoviedb.org/3/search/movie', {
+      params: {
+        'api_key': KEY, 'primary_release_year': '2018', 'language': 'fr-FR'
+      }
+    }).pluck('results');
+
   }
 
 }
