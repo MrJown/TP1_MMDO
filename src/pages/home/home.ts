@@ -4,18 +4,24 @@ import { HttpClient } from '@angular/common/http';
 import { KEY } from '../../app/tmdb';
 import { Observable } from 'rxjs/Observable';
 import { AsyncPipe } from '@angular/common';
+// import {}
 
 
 
 export interface Result {
   title: string;
   original_title: string;
+  author: string;
   release_date: string;
   overview: string;
-  vote_average: number;
+  popularity: number;
   poster_path: string;
 }
 
+// const fakeResults: Result[] = [
+//   { title: 'Test', author: 'TestA', date: 1997 },
+//   { title: 'Test2', author: 'Test2A', date: 2018 },
+// ];
 
 @Component({
   selector: 'page-home',
@@ -36,7 +42,7 @@ export class HomePage {
   fetchItems(val:string):Observable<Result[]>{
     return this.http.get<Result[]>('https://api.themoviedb.org/3/search/movie', {
       params: {
-        'api_key' : KEY, 'query': val, 'language' : 'fr-FR'
+        'api_key' : KEY, 'query': val
       }
     }).pluck('results');
   }
